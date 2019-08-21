@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.JDBCConnector" created="1566178023999" featuresString="DISCOVER_SCHEMA, PROVISIONING, SYNC_PROVISIONING, DIRECT_PERMISSIONS, SEARCH, ENABLE, UNLOCK" icon="databaseIcon" id="ac10c85f6c631e73816ca77c1a3e595c" modified="1566313970877" name="JD EDWARDS" profileClass="" type="JDBC">
+  <Attributes>
+    <Map>
+      <entry key="SQL" value="SELECT CRPDTA.F0092.ULUSER, CRPDTA.F98OWSEC.SCUSER ,CRPDTA.F98OWSEC.SCSECUSR ,CRPDTA.F98OWSEC.SCATTEMPTS ,&#xD;&#xA;CRPDTA.F98OWSEC.SCSECFRQ,CRPDTA.F98OWSEC.SCEUSER,CRPDTA.F95921.RLFRROLE&#xD;&#xA;FROM CRPDTA.F0092 &#xD;&#xA;inner join CRPDTA.F95921 &#xD;&#xA;ON CRPDTA.F0092.ULUSER = CRPDTA.F95921.RLUSER &#xD;&#xA;inner join CRPDTA.F98OWSEC &#xD;&#xA;ON CRPDTA.F0092 .ULUSER = CRPDTA.F98OWSEC.SCUSER WHERE CRPDTA.F0092.ULUSER NOT LIKE &apos;%-%&apos; ORDER BY CRPDTA.F0092.ULUSER"/>
+      <entry key="acceleratorPackEnabled"/>
+      <entry key="accountCorrelationAttrExpression"/>
+      <entry key="accountCreateConditionalRule"/>
+      <entry key="accountCreateEntitlements"/>
+      <entry key="accountDisableAttrExpression"/>
+      <entry key="accountLockAttrExpression"/>
+      <entry key="acctAggregationEnd">
+        <value>
+          <Date>1566313970873</Date>
+        </value>
+      </entry>
+      <entry key="acctAggregationStart">
+        <value>
+          <Date>1566313963125</Date>
+        </value>
+      </entry>
+      <entry key="additionalAppBusApprovalRule"/>
+      <entry key="additionalAppBusApprovers"/>
+      <entry key="afterProvisioningRule"/>
+      <entry key="afterpwdexpAttr"/>
+      <entry key="afterticketprovisioningExtendedrule"/>
+      <entry key="aggregationMode">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="apAdditionalApplicationAfterProvisioningRule"/>
+      <entry key="apAdditionalApplicationCorrelationRule"/>
+      <entry key="apAdditionalApplicationCreationRule"/>
+      <entry key="apAdditionalApplicationCustomizationRule"/>
+      <entry key="apAdditionalApplicationMCustomizationRule"/>
+      <entry key="apAdditionalApplicationMGroupRefreshRule"/>
+      <entry key="apAdditionalApplicationPreIterateRule"/>
+      <entry key="apAfterMoverJoiner">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="apAfterRehireAttrSync">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="apAppendApplicationName">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="apAttributeSyncEligibleRule"/>
+      <entry key="apBeforeMoverAttrSync">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="apPopulationLeaverOptions"/>
+      <entry key="apPopulationReverseLeaverOptions"/>
+      <entry key="apServiceAccountUniqueName"/>
+      <entry key="appBusApprovalRule"/>
+      <entry key="appBusApprovers"/>
+      <entry key="assignmentGroupname"/>
+      <entry key="authoritativeEmployee"/>
+      <entry key="authoritativeNonEmployee"/>
+      <entry key="authoritativeServiceAccount"/>
+      <entry key="beforeProvisioningRule"/>
+      <entry key="beforemoverPrimaryaccount">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="beforepwdexpAttr"/>
+      <entry key="birthrightEntAttrExpression"/>
+      <entry key="busApp">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="commentsAttr"/>
+      <entry key="commentsValue"/>
+      <entry key="compositeDefinition"/>
+      <entry key="deltaTable"/>
+      <entry key="disableOrderCheck" value="true"/>
+      <entry key="displayFormRule"/>
+      <entry key="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+      <entry key="eligibilityExpression"/>
+      <entry key="enablepsaValidation">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="enablepswexpNotification"/>
+      <entry key="entDir">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="evaluateCreateprovpolicy"/>
+      <entry key="getDeltaSQL"/>
+      <entry key="hardPolicyviolations"/>
+      <entry key="indexColumns">
+        <value>
+          <List>
+            <String>ULUSER</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="isPermissionEnabled">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="joinerEnabled"/>
+      <entry key="joinerPopulationRegex"/>
+      <entry key="joinerRoles"/>
+      <entry key="loaExtendedRule"/>
+      <entry key="loaProcess" value="Do Nothing"/>
+      <entry key="ltdExtendedRule"/>
+      <entry key="ltdProcess" value="Do Nothing"/>
+      <entry key="mergeColumns">
+        <value>
+          <List>
+            <String>RLFRROLE</String>
+          </List>
+        </value>
+      </entry>
+      <entry key="mergeRows">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="moveAccountContainer"/>
+      <entry key="moverExtendedRule"/>
+      <entry key="moverProcess" value="Do Nothing"/>
+      <entry key="moverRevocation" value="Do Nothing"/>
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="nativeChangeProcess" value="Do Nothing"/>
+      <entry key="omitmanagerPrivgaccess">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="partitionMode">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="partitionStatements"/>
+      <entry key="password" value="1:ACP:ScLyvvpk9Ct1UANbyWNFVKKI0Evxd1rBw12TR5cYn/A="/>
+      <entry key="policyType" value="Do Nothing"/>
+      <entry key="policytypeExceptions"/>
+      <entry key="primarySyncaccounts">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="primarypasswordSyncaccounts">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="privilegedAccountAttrExpression"/>
+      <entry key="privilegedEntAttrExpression"/>
+      <entry key="provisionRule" value="globalRule"/>
+      <entry key="pwdexpAttr"/>
+      <entry key="pwdexpAttrexpressionRule"/>
+      <entry key="rehireExtendedRule"/>
+      <entry key="rehirePrimaryaccount">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="rehireProcess" value="Do Nothing"/>
+      <entry key="removeEntitlementLeaverExceptionExpression"/>
+      <entry key="renameLDAPaccount">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="requestorFormRole"/>
+      <entry key="reverseTerminationExtendedRule"/>
+      <entry key="reverseleaverProcess" value="Do Nothing"/>
+      <entry key="rtwLOAExtendedRule"/>
+      <entry key="rtwLTDxtendedRule"/>
+      <entry key="rtwloaProcess" value="Do Nothing"/>
+      <entry key="rtwltdProcess" value="Do Nothing"/>
+      <entry key="scramPwdattr"/>
+      <entry key="scramblePasswordAttr"/>
+      <entry key="serviceAccountAttrExpression"/>
+      <entry key="skipSupervisorApproval"/>
+      <entry key="softPolicyviolations"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="targetpasswordSync"/>
+      <entry key="templateApplication" value="JDBC Template"/>
+      <entry key="terminationExtendedRule"/>
+      <entry key="terminationProcess" value="Do Nothing"/>
+      <entry key="testConnSQL"/>
+      <entry key="txCombinationName"/>
+      <entry key="url" value="jdbc:oracle:thin:@10.13.170.102:1521:nonprod"/>
+      <entry key="useExecuteQuery">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureDelta">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureDirectPermission">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureGetObject">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedurePartition">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureSqlStmt">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureTestConn">
+        <value>
+          <Boolean></Boolean>
+        </value>
+      </entry>
+      <entry key="user" value="S_Sailpoint"/>
+      <entry key="xDays"/>
+      <entry key="xDeleteDays"/>
+      <entry key="xdaysresetPwd"/>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" id="ac10c85f6c1b1a42816c1f6c996b5f1f" name="sp_admin"/>
+  </Owner>
+  <Schemas>
+    <Schema created="1566188372955" displayAttribute="ULUSER" id="ac10c85f6c631e73816ca81a03db5a44" identityAttribute="ULUSER" instanceAttribute="" modified="1566313953812" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="ULUSER" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SCUSER" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SCSECUSR" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SCATTEMPTS" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SCSECFRQ" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="SCEUSER" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="RLEFFDATE" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition name="RLEXPIRDATE" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+      <AttributeDefinition entitlement="true" managed="true" multi="true" name="RLFRROLE" type="string">
+        <Description></Description>
+      </AttributeDefinition>
+    </Schema>
+  </Schemas>
+  <ApplicationScorecard created="1566178023999" id="ac10c85f6c631e73816ca77c1a3f595d" modified="1566313953812"/>
+</Application>
