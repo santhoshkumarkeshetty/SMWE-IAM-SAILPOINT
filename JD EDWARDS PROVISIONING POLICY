@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1566487326056" id="ac10c85f6cb91db5816cb9ebad6800dc" language="beanshell" name="JD EDWARDS PROVISIOING RULE" type="JDBCProvision">
+  <Description>This rule is used by the JDBC connector to do provisioning of the data .</Description>
+  <Signature returnType="ProvisioningResult">
+    <Inputs>
+      <Argument name="log">
+        <Description>
+          The log object associated with the SailPointContext.
+        </Description>
+      </Argument>
+      <Argument name="context">
+        <Description>
+          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+        </Description>
+      </Argument>
+      <Argument name="application">
+        <Description>
+                The application whose data file is being processed.
+                </Description>
+      </Argument>
+      <Argument name="schema">
+        <Description>
+                The Schema currently in use.
+                </Description>
+      </Argument>
+      <Argument name="connection">
+        <Description>
+                A connection object to connect to database.
+                </Description>
+      </Argument>
+      <Argument name="plan">
+        <Description>
+                The ProvisioningPlan created against the JDBC application.
+                </Description>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="result">
+        <Description>
+                A Provisioning Result object is desirable to return the status.IT can be a new object or part of  Provisioning Plan
+                </Description>
+      </Argument>
+    </Returns>
+  </Signature>
+  <Source>import java.sql.PreparedStatement;
+import sailpoint.object.Attributes;
+import sailpoint.object.ProvisioningPlan;
+import sailpoint.object.ProvisioningPlan.AccountRequest;
+import sailpoint.object.ProvisioningPlan.AttributeRequest;
+import sailpoint.object.ProvisioningResult;
+import sailpoint.object.TaskResult;
+import sailpoint.tools.Util;
+ProvisioningResult result=new ProvisioningResult();
+String userId=null;
+String startDate=null;
+String endDate=null;
+try{
+if(plan.getAccountRequests()!=null&amp;&amp;!plan.getAccountRequests().isEmpty()){
+PreparedStatement ps=null;
+PreparedStatement removeAccess=null;
+boolean isCreate=false;
+for(AccountRequest accountRequest:plan.getAccountRequests()){
+if(accountRequest.getOperation().toString().equalsIgnoreCase("Create")){
+isCreate=true;
+}
+userId=accountRequest.getNativeIdentity();
+List roles=new ArrayList();
+for(AttributeRequest attributeRequest:accountRequest.getAttributeRequests()){
+if(attributeRequest.getName().equalsIgnoreCase("RLFROLE")&amp;&amp;attributeRequest.getOperation().toString().equalsIgnoreCase("Add")){
+roles=(List) (attributeRequest.getValue() instanceof List?attributeRequest.getValue():Util.stringToList((String) attributeRequest.getValue()));
+for(String role:roles){
+ps=connection.prepareStatement("INSERT INTO CRPDTA.RLFROLE (RLUSER,RLFRROLE,RLEFFDATE,RLEXPIRDATE) VALUES(?,?,?,?)");
+ps.setString(1,userId);
+ps.setString(2, role);
+ps.setString(3, String.valueOf(((Date)attributeRequest.get("addDate")).getTime()));
+ps.setString(4, String.valueOf(((Date)attributeRequest.get("removeDate")).getTime()));
+ps.addBatch();
+}
+}
+else if(attributeRequest.getName().equalsIgnoreCase("RLFROLE")&amp;&amp;attributeRequest.getOperation().toString().equalsIgnoreCase("Remove")){
+roles=(List) (attributeRequest.getValue() instanceof List?attributeRequest.getValue():Util.stringToList((String) attributeRequest.getValue()));
+for(String role:roles){
+removeAccess=connection.prepareStatement("DELETE FROM TABLE CRPDTA.RLFROLE WHERE CRPDTA.RLFROLE.RLUSER=?)");
+removeAccess.setString(1,userId);
+removeAccess.addBatch();
+} 
+}
+}
+}
+if(isCreate){
+PreparedStatement insertRecord=connection.prepareStatement("INSERT INTO CRPDTA.F0092 (ULUSER) VALUES(?)");
+insertRecord.setString(1, userId);
+int i=insertRecord.executeUpdate();
+if(i>0){
+System.out.println("User Record Inserted Successfully for "+userId);
+}
+}
+if(ps!=null){
+ps.executeBatch();
+}
+if(removeAccess!=null){
+removeAccess.executeBatch();
+}
+}
+result.setStatus(ProvisioningResult.STATUS_COMMITTED);
+}catch (Exception e) {
+result.setStatus(ProvisioningResult.STATUS_FAILED);
+result.addError(e);
+}</Source>
+</Rule>
